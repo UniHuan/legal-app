@@ -106,17 +106,41 @@ const desktop = {
 
   // Code
   async loadCode() {
-    const books = [{b:1,t:'第一编 总则',c:204},{b:2,t:'第二编 物权',c:258},{b:3,t:'第三编 合同',c:526},{b:4,t:'第四编 人格权',c:51},{b:5,t:'第五编 婚姻家庭',c:79},{b:6,t:'第六编 继承',c:45},{b:7,t:'第七编 侵权责任',c:95}];
-    document.getElementById('page-code').innerHTML = `<div class="page-title-area"><h1>📖 法典全文</h1><p>《中华人民共和国民法典》· 7编+附则 · 1260条</p></div>
-    <div class="search-box" style="margin-bottom:16px;"><span>🔍</span><input type="text" placeholder="搜索法条或编号直达..." id="codeSearchInput" onkeydown="if(event.key==='Enter')desktop.searchCode(this.value)"></div>
-    <div class="grid-2">${books.map(b=>`<div class="card" onclick="desktop.browseBook(${b.b})"><div class="card-title">${b.t}</div><div class="card-desc">${b.c}条</div></div>`).join('')}</div>`;
+    const books = [
+      {b:1,n:'①',t:'第一编 总则',c:204,d:'基本规定·自然人·法人·民事法律行为·代理·诉讼时效',tags:['富强','民主','文明','法治']},
+      {b:2,n:'②',t:'第二编 物权',c:258,d:'所有权·用益物权·担保物权·占有·业主权利·居住权',tags:['富强','民主','公正']},
+      {b:3,n:'③',t:'第三编 合同',c:526,d:'通则·典型合同19种·准合同·电子合同·物业服务·合伙',tags:['诚信','公正','自由']},
+      {b:4,n:'④',t:'第四编 人格权',c:51,d:'生命权·肖像权·名誉权·隐私权·个人信息·AI换脸规制',tags:['平等','文明','法治']},
+      {b:5,n:'⑤',t:'第五编 婚姻家庭',c:79,d:'结婚·家庭关系·离婚·收养·离婚冷静期·家务补偿',tags:['和谐','平等','自由']},
+      {b:6,n:'⑥',t:'第六编 继承',c:45,d:'法定继承·遗嘱继承·遗产处理·打印遗嘱·遗产管理人',tags:['自由','平等','文明']},
+      {b:7,n:'⑦',t:'第七编 侵权责任',c:95,d:'损害赔偿·高空抛物·网络侵权·生态赔偿·自甘风险',tags:['公正','法治','文明']}
+    ];
+    this.navigate('code');
+    document.getElementById('page-code').innerHTML = `
+      <div class="page-title-area"><h1>📖 法典全文</h1><p>《中华人民共和国民法典》· 7编+附则 · 1260条 · 2021年1月1日施行</p></div>
+      <div class="code-search-box"><span>🔍</span><input type="text" placeholder="输入法条编号直达(如725) 或 关键词搜索..." id="codeSearchInput" onkeydown="if(event.key==='Enter')desktop.searchCode(this.value)"><button class="search-btn" onclick="desktop.searchCode(document.getElementById('codeSearchInput').value)">搜索</button><span class="hint">共1260条</span></div>
+      <div class="grid-2">${books.map(b=>`
+        <div class="code-book-card" onclick="desktop.browseBook(${b.b})">
+          <div class="book-num">${b.n}</div>
+          <div class="book-info">
+            <div class="book-title">${b.t}</div>
+            <div class="book-count">${b.c}条</div>
+            <div class="book-desc">${b.d}</div>
+            <div class="book-tags">${b.tags.map(t=>`<span class="tag tag-blue">${t}</span>`).join('')}</div>
+          </div>
+        </div>`).join('')}</div>`;
   },
 
   async browseBook(book) {
     const articles = await api.getArticles(50, book);
+    const names = ['','总则','物权','合同','人格权','婚姻家庭','继承','侵权责任'];
     this.navigate('code');
-    document.getElementById('page-code').innerHTML = `<div class="back-link"><a href="javascript:desktop.loadCode()">← 返回目录</a></div>
-    <div class="card" style="grid-column:1/-1;">${articles.map(a=>`<div class="rel-item" onclick="desktop.openArticle(${a.article_number})"><strong>第${a.article_number}条</strong> · ${a.one_liner}</div>`).join('')}</div>`;
+    document.getElementById('page-code').innerHTML = `
+      <div class="code-breadcrumb"><a href="javascript:desktop.loadCode()">📖 法典全文</a><span>›</span><span>${names[book]}</span><span style="margin-left:auto;color:var(--text-secondary);">共${articles.length}条</span></div>
+      <div class="card" style="padding:0;overflow:hidden;">
+        ${articles.map((a,i)=>`<div class="article-list-item" style="padding:14px 20px;" onclick="desktop.openArticle(${a.article_number})"><span class="art-num-mini">第${a.article_number}条</span><span class="art-liner">${a.one_liner}</span><span class="art-arrow">→</span></div>`).join('')}
+      </div>
+      <div style="text-align:center;margin-top:16px;"><a href="javascript:desktop.loadCode()" style="color:var(--blue);text-decoration:none;">← 返回目录</a></div>`;
   },
 
   async searchCode(q) {
@@ -124,18 +148,24 @@ const desktop = {
     if (!isNaN(num) && num >= 1 && num <= 1260) return this.openArticle(num);
     const articles = await api.searchArticles(q);
     this.navigate('code');
-    document.getElementById('page-code').innerHTML = `<div class="card" style="grid-column:1/-1;"><div class="card-title">🔍 搜索结果</div>${articles.map(a=>`<div class="rel-item" onclick="desktop.openArticle(${a.article_number})"><strong>第${a.article_number}条</strong> · ${a.one_liner}</div>`).join('')}</div>`;
+    document.getElementById('page-code').innerHTML = `
+      <div class="code-breadcrumb"><a href="javascript:desktop.loadCode()">📖 法典全文</a><span>›</span><span>搜索"${q}"</span><span style="margin-left:auto;">${articles.length}条结果</span></div>
+      <div class="card" style="padding:0;overflow:hidden;">
+        ${articles.length>0 ? articles.map(a=>`<div class="article-list-item" style="padding:14px 20px;" onclick="desktop.openArticle(${a.article_number})"><span class="art-num-mini">第${a.article_number}条</span><span class="art-liner">${a.one_liner}</span><span class="art-arrow">→</span></div>`).join('') : '<div style="padding:40px;text-align:center;color:var(--text-secondary);">未找到相关法条，请尝试其他关键词</div>'}
+      </div>`;
   },
 
   async openArticle(num) {
     const a = await api.getArticle(num);
     this.navigate('article');
-    document.getElementById('page-article').innerHTML = a ? `
-      <div class="back-link"><a href="javascript:desktop.loadCode();desktop.navigate('code')">← 返回法典</a></div>
-      <div class="article-card"><div class="article-number">第${a.article_number}条</div><div style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">${a.book_title}</div>
-      <div class="article-plain"><strong>💬 大白话：</strong>${a.content_plain}</div>
-      <div class="article-original"><strong>📜 法条原文：</strong><br>${a.content_original}</div></div>` : '<div class="loading">未找到</div>';
-  },
+    if (!a) { document.getElementById('page-article').innerHTML = '<div class="loading">未找到该法条</div>'; return; }
+    document.getElementById('page-article').innerHTML = `
+      <div class="code-breadcrumb"><a href="javascript:desktop.loadCode();desktop.navigate('code')">📖 法典全文</a><span>›</span><span>${a.book_title}</span><span>›</span><span>第${a.article_number}条</span></div>
+      <div class="article-detail-card">
+        <div class="art-header"><div class="art-num-lg">第${a.article_number}条</div><div class="art-meta">${a.book_title}${a.chapter?' · '+a.chapter:''}</div></div>
+        <div class="art-body"><div class="art-plain-lg"><strong>💬 大白话：</strong>${a.content_plain}</div><div class="art-original-lg"><strong>📜 法条原文：</strong><br>${a.content_original}</div></div>
+        <div class="art-footer"><span class="art-label">价值观：</span>${(a.value_tags||[]).map(v=>`<span class="tag tag-blue">${v}</span>`).join('')}</div>
+      </div>`;
 
   loadTools() {
     document.getElementById('page-tools').innerHTML = `
