@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">法治同行</string>
+    <string name="title_activity_main">法治同行</string>
+    <string name="package_name">com.unihuan.legalmate</string>
+    <string name="custom_url_scheme">com.unihuan.legalmate</string>
+</resources>

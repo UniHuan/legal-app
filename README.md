@@ -56,3 +56,33 @@ DEEPSEEK_API_KEY=your_deepseek_api_key
 ## License
 
 本项目作为法治公共产品，内容数据依法公开，代码采用 MIT 协议。
+
+## 📱 原生APP打包
+
+### 构建iOS (需要Mac + Xcode)
+```bash
+npm run cap:open:ios     # 在Xcode中打开
+# Xcode: Product → Archive → Distribute App
+```
+
+### 构建Android (需要Android Studio)
+```bash
+npm run cap:open:android  # 在Android Studio中打开
+# Build → Generate Signed Bundle/APK
+```
+
+### 上架App Store
+1. 注册Apple Developer ($99/年)
+2. Xcode Archive → Upload to App Store Connect
+3. 填写应用信息、截图、隐私政策URL
+
+### 上架应用宝/华为/小米等
+1. 注册开发者账号
+2. 上传APK + 应用信息
+
+### 构建命令
+```bash
+npm run cap:sync         # 同步Web资源到原生
+npm run cap:open:ios     # 打开iOS项目
+npm run cap:open:android # 打开Android项目
+```

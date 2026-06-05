@@ -1,0 +1,30 @@
+{
+  "name": "legal-mate",
+  "version": "1.0.0",
+  "description": "法治同行 - 民法典科普平台",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "cap:init": "npx cap init 法治同行 com.unihuan.legalmate --web-dir=.",
+    "cap:add:ios": "npx cap add ios",
+    "cap:add:android": "npx cap add android",
+    "cap:sync": "npx cap sync",
+    "cap:open:ios": "npx cap open ios",
+    "cap:open:android": "npx cap open android"
+  },
+  "keywords": [
+    "法律",
+    "民法典",
+    "普法"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/cli": "^8.4.0",
+    "@capacitor/core": "^8.4.0",
+    "@capacitor/ios": "^8.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
