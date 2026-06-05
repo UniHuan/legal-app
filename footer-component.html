@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>UniHuan 页脚组件预览</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#333;min-height:100vh;display:flex;flex-direction:column}
+
+/* === 模拟页面内容 === */
+.page-content{flex:1;display:flex;align-items:center;justify-content:center;background:#f5f5f5;font-size:18px;color:#999;padding:60px 0}
+/* === UniHuan 页脚 === */
+.site-footer{background:#1a1a2e;color:#ccc;padding:40px 0 0;font-size:14px}
+.footer-wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.1)}
+@media(max-width:768px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
+.footer-col h4{color:#fff;font-size:15px;margin-bottom:16px;font-weight:600}
+.footer-col a{display:block;color:#999;text-decoration:none;padding:4px 0;font-size:13px;transition:color .2s}
+.footer-col a:hover{color:#fff}
+
+/* 法治同行特殊高亮 */
+.footer-col .legal-link{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,rgba(26,86,219,.2),rgba(59,130,246,.15));
+  border:1px solid rgba(26,86,219,.3);border-radius:8px;
+  padding:8px 14px;color:#60A5FA !important;font-weight:600;
+  margin-top:8px;transition:all .2s
+}
+.footer-col .legal-link:hover{background:rgba(26,86,219,.3);border-color:rgba(26,86,219,.5);color:#93C5FD !important}
+.footer-col .legal-link .legal-badge{
+  background:#DC2626;color:#fff;border-radius:10px;
+  padding:1px 8px;font-size:10px;font-weight:600
+}
+
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 0;flex-wrap:wrap;gap:12px
+}
+.footer-bottom .copyright{color:#666;font-size:12px}
+.footer-bottom-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-bottom-links a{color:#666;text-decoration:none;font-size:12px;transition:color .2s}
+.footer-bottom-links a:hover{color:#ccc}
+.footer-bottom-links .highlight{color:#60A5FA;font-weight:600}
+
+/* 12348热线 */
+.hotline-strip{background:#DC2626;color:#fff;text-align:center;padding:12px;font-size:14px;font-weight:600;letter-spacing:1px}
+.hotline-strip a{color:#fff;text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="page-content">← UniHuan 网站主体内容区域 →</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 以下为嵌入UniHuan页脚的完整代码 -->
+<!-- ══════════════════════════════════════ -->
+
+<footer class="site-footer">
+  <div class="footer-wrap">
+
+    <!-- 四列导航 -->
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>关于UniHuan</h4>
+        <a href="#">公司介绍</a>
+        <a href="#">发展历程</a>
+        <a href="#">加入我们</a>
+        <a href="#">联系我们</a>
+      </div>
+      <div class="footer-col">
+        <h4>产品服务</h4>
+        <a href="#">项目管理</a>
+        <a href="#">技能更新</a>
+        <a href="#">需求匹配</a>
+        <!-- ★ 法治同行入口 -->
+        <a class="legal-link" href="https://legal-mqhrhjb7s-unihuans-projects.vercel.app" target="_blank">
+          ⚖️ 法治同行 <span class="legal-badge">免费</span>
+        </a>
+      </div>
+      <div class="footer-col">
+        <h4>法律科普</h4>
+        <a href="https://legal-mqhrhjb7s-unihuans-projects.vercel.app" target="_blank">生活场景(108个)</a>
+        <a href="https://legal-mqhrhjb7s-unihuans-projects.vercel.app" target="_blank">AI智能问答</a>
+        <a href="https://legal-mqhrhjb7s-unihuans-projects.vercel.app" target="_blank">民法典全文(1260条)</a>
+        <a href="https://legal-mqhrhjb7s-unihuans-projects.vercel.app" target="_blank">价值观地图</a>
+      </div>
+      <div class="footer-col">
+        <h4>帮助支持</h4>
+        <a href="https://legal-mqhrhjb7s-unihuans-projects.vercel.app" target="_blank">便民工具</a>
+        <a href="#">使用文档</a>
+        <a href="#">意见反馈</a>
+        <a href="tel:12348">📞 12348法律援助</a>
+      </div>
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="footer-bottom">
+      <div class="copyright">© 2026 UniHuan. All rights reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">隐私政策</a>
+        <a href="#">服务条款</a>
+        <a class="highlight" href="https://legal-mqhrhjb7s-unihuans-projects.vercel.app" target="_blank">⚖️ 法治同行</a>
+        <a href="#">ICP备案号</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 法律援助热线横条 -->
+  <div class="hotline-strip">
+    <a href="tel:12348">📞 全国法律援助热线 12348 · 免费 · 24小时 · 专业律师接听</a>
+  </div>
+</footer>
+
+</body>
+</html>
