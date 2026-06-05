@@ -243,10 +243,12 @@ const desktop = {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 默认显示首页，隐藏其他
-  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-  const homeEl = document.getElementById('page-home');
-  if (homeEl) { homeEl.classList.add('active'); homeEl.style.display = 'block'; }
-  desktop.init();
-});
+// 页面加载完成后初始化
+(function boot() {
+  document.querySelectorAll('.page').forEach(p => {
+    if (!p.classList.contains('active')) p.style.display = 'none';
+  });
+  const home = document.getElementById('page-home');
+  if (home) { home.classList.add('active'); home.style.display = 'block'; }
+  setTimeout(() => { try { desktop.init(); } catch(e) { console.error(e); } }, 100);
+})();

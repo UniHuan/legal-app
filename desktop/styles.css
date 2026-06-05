@@ -94,7 +94,6 @@ body {
 .top-bar .top-actions .btn-elders:hover { background: var(--red-light); }
 
 /* Content area */
-.page { display: none; padding: 24px; max-width: 1200px; }
 .page.active { display: block; }
 .page-title-area { margin-bottom: 24px; }
 .page-title-area h1 { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
@@ -449,5 +448,4 @@ body {
 .article-detail-card .art-footer .art-label { font-size:12px;color:var(--text-secondary); }
 
 /* === 页面切换 === */
-.page { display:none; padding:24px; max-width:1200px; }
 .page.active { display:block; }
