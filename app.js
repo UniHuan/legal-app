@@ -1,3 +1,4 @@
+this.prevPage = this.currentPage;
 // ============================================================
 // 法治同行 (LegalMate) - Main Application
 // ============================================================
@@ -61,9 +62,11 @@ const app = {
 
     // Update sidebar
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-    const navLink = document.querySelector(`.nav-link[data-page="${page}"]`);
-    if (navLink) navLink.classList.add('active');
-
+    const mainPages = ['home','values','code','ai','tools','quiz'];
+    if (mainPages.includes(page)) {
+      const navLink = document.querySelector(`.nav-link[data-page="${page}"]`);
+      if (navLink) navLink.classList.add('active');
+    }
     // Update pages with fade
     document.querySelectorAll('.page').forEach(p => { p.classList.remove('active'); p.style.opacity = '0'; });
     const pageEl = document.getElementById('page-' + page);

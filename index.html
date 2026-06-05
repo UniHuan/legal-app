@@ -81,6 +81,11 @@ if ('serviceWorker' in navigator) {
 
     <!-- ==================== PAGE: HOME ==================== -->
     <div class="page active" id="page-home">
+      <!-- 移动端搜索栏 -->
+      <div class="search-box mobile-search" style="margin-bottom:12px;">
+        <span>🔍</span>
+        <input type="text" placeholder="描述你的情况..." id="mobileSearch" onkeydown="if(event.key==='Enter')app.searchGlobal(this.value)">
+      </div>
       <div class="hero">
         <h1>一本你真正能读懂的民法典</h1>
         <p>1260条法条 → <span id="heroSceneCount">108</span>个生活场景 → 12个核心价值观<br>不用注册 · 完全免费 · 打开即用</p>

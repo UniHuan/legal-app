@@ -1,0 +1,12 @@
+{
+	"appId": "com.unihuan.legalmate",
+	"appName": "法治同行",
+	"webDir": "www",
+	"server": {
+		"androidScheme": "https"
+	},
+	"ios": {
+		"contentInset": "automatic"
+	},
+	"packageClassList": []
+}
