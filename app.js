@@ -64,10 +64,10 @@ const app = {
     const navLink = document.querySelector(`.nav-link[data-page="${page}"]`);
     if (navLink) navLink.classList.add('active');
 
-    // Update pages
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // Update pages with fade
+    document.querySelectorAll('.page').forEach(p => { p.classList.remove('active'); p.style.opacity = '0'; });
     const pageEl = document.getElementById('page-' + page);
-    if (pageEl) pageEl.classList.add('active');
+    if (pageEl) { pageEl.classList.add('active'); setTimeout(() => pageEl.style.opacity = '1', 10); }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -112,9 +112,15 @@ const app = {
     }
 
     document.getElementById('statScenarios').textContent = scenarios.length + '+';
-    // Show real article count
+    // Show real counts
     const { count: articleCount } = await this.supabase.from('fz_articles').select('*', { count: 'exact', head: true });
     if (articleCount) document.getElementById('statArticles').textContent = articleCount.toLocaleString();
+    const { count: sceneCount } = await this.supabase.from('fz_scenarios').select('*', { count: 'exact', head: true });
+    if (sceneCount) {
+      document.getElementById('statScenarios').textContent = sceneCount.toLocaleString();
+      const heroEl = document.getElementById('heroSceneCount');
+      if (heroEl) heroEl.textContent = sceneCount.toLocaleString();
+    }
 
     const hotHtml = scenarios.map(s => {
       const vals = (s.value_tags || []).map(v => {

@@ -83,7 +83,7 @@ if ('serviceWorker' in navigator) {
     <div class="page active" id="page-home">
       <div class="hero">
         <h1>一本你真正能读懂的民法典</h1>
-        <p>1260条法条 → 200+生活场景 → 12个核心价值观<br>不用注册 · 完全免费 · 打开即用</p>
+        <p>1260条法条 → <span id="heroSceneCount">108</span>个生活场景 → 12个核心价值观<br>不用注册 · 完全免费 · 打开即用</p>
         <div class="hero-search">
           <span>🔍</span>
           <input type="text" placeholder="比如：房东卖房我能不搬吗？" id="heroSearch"
@@ -233,8 +233,23 @@ if ('serviceWorker' in navigator) {
     </div>
 
   </main>
+
+  <!-- Floating Action -->
+  <a href="#app" class="fab-top" id="fabTop" title="回到顶部">⬆</a>
+  <a href="tel:12348" class="fab-hotline" title="法律援助热线">📞</a>
 </div>
 
 <script src="app.js"></script>
+<script>
+// Floating buttons
+window.addEventListener('scroll', function(){
+  document.getElementById('fabTop').style.display = window.scrollY > 300 ? 'flex' : 'none';
+});
+// Page fade
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.page').forEach(p => p.style.transition = 'opacity 0.2s');
+  document.querySelector('.page.active') && (document.querySelector('.page.active').style.opacity = '1');
+});
+</script>
 </body>
 </html>

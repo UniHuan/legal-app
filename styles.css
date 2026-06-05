@@ -321,6 +321,22 @@ body.elders-mode .card { padding: 24px; }
 body.elders-mode .sidebar { width: 280px; }
 body.elders-mode .main-content { margin-left: 280px; }
 
+/* Floating action buttons */
+.fab-top,.fab-hotline{
+  position:fixed;right:20px;z-index:200;
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.15);
+  transition:all .2s;cursor:pointer;
+}
+.fab-top{bottom:140px;background:#fff;color:var(--blue);border:1px solid var(--border);display:none}
+.fab-hotline{bottom:80px;background:var(--red);color:#fff;font-size:22px}
+.fab-top:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.fab-hotline:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 6px 20px rgba(220,38,38,.4)}
+
+/* Page fade */
+.page{opacity:0;transition:opacity .2s ease}
+
 /* Animations */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
