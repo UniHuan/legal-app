@@ -341,10 +341,32 @@ body.elders-mode .main-content { margin-left: 280px; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
 /* Mobile */
+@media (max-width: 768px) {
+  .sidebar { width: 60px; }
+  .sidebar .logo-text, .sidebar .logo-sub, .sidebar .nav-link span:not(.nav-icon),
+  .sidebar .nav-section, .sidebar .nav-badge, .sidebar-footer span { display: none; }
+  .sidebar-logo { justify-content: center; padding: 16px 0; }
+  .nav-link { justify-content: center; padding: 12px 0; }
+  .main-content { margin-left: 60px; }
+  .grid-2, .grid-3, .grid-4, .value-cards { grid-template-columns: 1fr; }
+  .detail-grid, .ai-layout { grid-template-columns: 1fr; }
+  .ai-sidebar { display: none; }
+  .hero { padding: 24px; }
+  .hero h1 { font-size: 22px; }
+  .hero-stats { gap: 16px; }
+  .tool-grid { grid-template-columns: 1fr; }
+}
 
 /* ══════════════════════════════════════════ */
 /*  移动端全面适配 (iPhone SE ~ Pro Max)     */
 /* ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Sidebar → 底部Tab */
+  .sidebar {
+    width: 100%; height: auto; position: fixed; bottom: 0; top: auto; left: 0; right: 0;
+    flex-direction: row; z-index: 300; border-right: none; border-top: 1px solid var(--border);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.05); padding: 0;
+  }
   .sidebar-logo, .sidebar-footer, .nav-section { display: none !important; }
   .sidebar-nav { display: flex; flex-direction: row; justify-content: space-around; padding: 0; overflow: visible; }
   .nav-link {
@@ -461,180 +483,15 @@ body.elders-mode .main-content { margin-left: 280px; }
 }
 
 /* Extra small screens */
-
-/* Mobile search bar */
-
-/* ═══════════════════════════════════════════════ */
-/*  📱 移动端全面适配 (参考业界最佳实践)            */
-/*  iPhone SE 375pt ~ Pro Max 430pt                */
-/* ═══════════════════════════════════════════════ */
-@media (max-width: 768px) {
-  /* === 全局重置 === */
-  * { -webkit-tap-highlight-color: transparent; }
-  html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
-  body { font-size: 14px; -webkit-text-size-adjust: 100%; }
-
-  /* === 侧边栏 → 固定底部Tab === */
-  .sidebar {
-    position: fixed; bottom: 0; top: auto; left: 0; right: 0;
-    width: 100%; height: 56px; padding-bottom: env(safe-area-inset-bottom, 0);
-    flex-direction: row; z-index: 300;
-    border-right: none; border-top: 1px solid var(--border);
-    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-    box-shadow: 0 -1px 4px rgba(0,0,0,0.04);
-    overflow: visible;
-  }
-  .sidebar-logo, .sidebar-footer, .nav-section, .nav-link .nav-badge { display: none !important; }
-  .sidebar-nav {
-    display: flex; flex-direction: row; justify-content: space-around;
-    align-items: center; padding: 0; width: 100%; overflow: visible;
-  }
-  .nav-link {
-    flex-direction: column; align-items: center; justify-content: center;
-    padding: 4px 0; font-size: 10px; gap: 2px; border-left: none;
-    border-top: 2px solid transparent; line-height: 1.2;
-    min-width: auto; flex: 1; text-align: center;
-    color: var(--text-secondary);
-  }
-  .nav-link .nav-icon { font-size: 22px; display: block; }
-  .nav-link.active { border-left-color: transparent; border-top-color: var(--blue); background: transparent; color: var(--blue); font-weight: 500; }
-
-  /* === 主内容区 === */
-  .main-content { margin-left: 0; padding-bottom: 70px; overflow-x: hidden; }
-  .top-bar { display: none; }
-  .page { padding: 14px; max-width: 100%; overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; }
-  .page.active { padding-bottom: 80px; }
-
-  /* === 移动搜索栏 === */
-  .mobile-search { display: flex; margin-bottom: 10px; flex-shrink: 0; }
-  .mobile-search input { font-size: 14px; }
-  @media (min-width: 769px) { .mobile-search { display: none !important; } }
-
-  /* === Hero === */
-  .hero {
-    padding: 22px 16px; border-radius: 14px; margin-bottom: 14px;
-    overflow: hidden;
-  }
-  .hero h1 { font-size: 20px; line-height: 1.3; }
-  .hero p { font-size: 12px; line-height: 1.6; max-width: 100%; }
-  .hero-search { max-width: 100%; padding: 10px 12px; }
-  .hero-search input { font-size: 13px; }
-  .hero-stats { gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .hero-stat .num { font-size: 17px; }
-  .hero-stat .label { font-size: 10px; }
-
-  /* === 全局布局：全部单列 === */
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 10px; }
-  .home-quick { grid-template-columns: 1fr; }
-  .category-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-  .tool-grid { grid-template-columns: 1fr; }
-  .value-cards { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-
-  /* === 防止溢出 === */
-  .detail-grid, .ai-layout { grid-template-columns: 1fr; }
-  .scene-header h1, .page-title-area h1 { font-size: 19px; word-break: break-word; }
-  .card, .scene-card, .article-card, .tool-card-lg { overflow: hidden; word-break: break-word; }
-  .card-title { font-size: 15px; word-break: break-word; }
-  .card-desc, .s-desc { font-size: 12px; }
-  pre, .article-original { white-space: pre-wrap; word-wrap: break-word; overflow-x: auto; max-width: 100%; }
-
-  /* === 场景卡片 === */
-  .scene-card { padding: 14px; }
-  .scene-card .s-title { font-size: 14px; line-height: 1.4; }
-  .scene-card .s-conclusion { font-size: 12px; padding: 6px 10px; }
-  .scene-card .s-desc { font-size: 11px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-
-  /* === 场景详情 === */
-  .detail-main .section h3 { font-size: 14px; }
-  .conclusion-box { font-size: 14px; padding: 14px; }
-  .step-list li { font-size: 13px; padding: 10px 0; }
-  .step-num { width: 24px; height: 24px; font-size: 11px; }
-  .detail-sidebar { display: none; }
-  .warning-box { font-size: 12px; padding: 10px; line-height: 1.6; }
-  .back-link a { font-size: 13px; }
-
-  /* === AI 问答 === */
-  .ai-layout { height: calc(100vh - 130px); }
-  .ai-chat { margin: 0; border-radius: 0; border: none; height: 100%; }
-  .ai-sidebar { display: none; }
-  .ai-chat-header { padding: 12px 14px; }
-  .ai-messages { padding: 10px; }
-  .ai-welcome { padding: 30px 16px; }
-  .ai-welcome > div:first-child { font-size: 40px; }
-  .ai-bubble { max-width: 88%; font-size: 13px; padding: 10px 12px; }
-  .ai-input-area { padding: 8px 10px; gap: 8px; }
-  .ai-input-area textarea { font-size: 13px; height: 38px; padding: 8px 12px; }
-  .send-btn { width: 38px; height: 38px; font-size: 16px; }
-  .ai-presets { padding: 0 10px 8px; gap: 6px; }
-  .ai-preset { font-size: 11px; padding: 4px 10px; }
-
-  /* === 价值观地图 === */
-  .value-card { padding: 14px 8px; }
-  .value-card .v-icon { font-size: 26px; margin-bottom: 4px; }
-  .value-card .v-name { font-size: 13px; }
-  .value-card .v-count { font-size: 10px; }
-  #valueDetail > div:first-child {
-    flex-direction: column; text-align: center; padding: 16px !important;
-  }
-  #valueDetail h1 { font-size: 22px; }
-
-  /* === 卡片+工具 === */
-  .card { padding: 14px; }
-  .tool-card-lg { padding: 14px; gap: 12px; }
-  .tool-card-lg .t-icon { font-size: 32px; }
-  .tool-card-lg .t-title { font-size: 14px; }
-  .tool-card-lg .t-desc { font-size: 12px; }
-  .tool-mini { padding: 16px 10px; }
-  .tool-mini .t-icon { font-size: 26px; }
-  .tool-mini .t-label { font-size: 11px; }
-  .ai-card { padding: 16px; }
-  .ai-card .ai-header { margin-bottom: 8px; }
-  .ai-card .ai-header .ai-title { font-size: 15px; }
-  .ai-example { font-size: 11px; padding: 4px 10px; }
-
-  /* === 法典浏览 === */
-  .article-card { padding: 16px; margin-bottom: 60px; }
-  .article-number { font-size: 20px; }
-  .article-original, .article-plain { font-size: 13px; padding: 10px; line-height: 1.8; }
-  .collapse-trigger { font-size: 13px; padding: 12px 0; }
-  .collapse-content { font-size: 12px; }
-  .rel-item { font-size: 13px; }
-
-  /* === 每日一题 === */
-  .quiz-option { font-size: 13px; padding: 10px; }
-
-  /* === 热线 === */
-  .hotline-banner { padding: 14px; margin-top: 14px; }
-  .hotline-banner .hl-number { font-size: 26px; }
-
-  /* === 分类页标题 === */
-  .section-header h2 { font-size: 15px; }
-  .section-title { font-size: 14px; margin: 14px 0 10px; }
-  .cat-item { font-size: 10px; padding: 8px 2px; white-space: nowrap; }
-
-  /* === 浮动按钮 === */
-  .fab-top { bottom: 90px; right: 12px; width: 38px; height: 38px; font-size: 15px; }
-  .fab-hotline { bottom: 54px; right: 12px; width: 42px; height: 42px; font-size: 16px; }
-
-  /* === 滚动区域 === */
-  .scroll-h { -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
-  .scene-card { scroll-snap-align: start; }
-  .scroll-h::-webkit-scrollbar { display: none; }
-
-  /* === 动画优化 === */
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-}
-
-/* === 超小屏 === */
 @media (max-width: 380px) {
-  .hero { padding: 18px 12px; }
-  .hero h1 { font-size: 18px; }
+  .hero { padding: 20px 12px; }
+  .hero h1 { font-size: 19px; }
   .page { padding: 10px; }
   .value-cards { grid-template-columns: repeat(2, 1fr); }
-  .category-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* === 确保桌面端移动搜索隐藏 === */
-@media (min-width: 769px) {
-  .mobile-search { display: none !important; }
-}
+/* Mobile search bar */
+.mobile-search { display: none; }
+@media (max-width: 768px) { .mobile-search { display: flex; } }
+@media (min-width: 769px) { .mobile-search { display: none !important; } }
+
