@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="page-title">🌍 价值观地图</view>
+  <text class="subtitle">12个社会主义核心价值观，每一个都在民法典中有制度支撑</text>
+  <view wx:for="{{values}}" wx:key="id" class="value-row" bindtap="goValueDetail" data-id="{{item.id}}" data-name="{{item.name}}">
+    <text class="v-icon">{{item.icon}}</text>
+    <view class="v-info"><text class="v-name">{{item.name}}</text><text class="v-count">{{item.scenario_count}}个场景</text></view>
+    <text class="arrow">→</text>
+  </view>
+  <view class="hotline">📞 法律援助热线 12348</view>
+</view>

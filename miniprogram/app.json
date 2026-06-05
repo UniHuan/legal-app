@@ -1,0 +1,20 @@
+{
+  "pages": ["pages/index/index","pages/scene/scene","pages/values/values","pages/code/code","pages/ai/ai","pages/tools/tools","pages/quiz/quiz"],
+  "window": {
+    "navigationBarTitleText": "法治同行",
+    "navigationBarBackgroundColor": "#1A56DB",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F8FAFC"
+  },
+  "tabBar": {
+    "color": "#64748B","selectedColor": "#1A56DB","backgroundColor": "#FFFFFF",
+    "list": [
+      {"pagePath":"pages/index/index","text":"场景学法","iconPath":"","selectedIconPath":""},
+      {"pagePath":"pages/values/values","text":"价值观","iconPath":"","selectedIconPath":""},
+      {"pagePath":"pages/code/code","text":"法典","iconPath":"","selectedIconPath":""},
+      {"pagePath":"pages/ai/ai","text":"AI问答","iconPath":"","selectedIconPath":""}
+    ]
+  },
+  "networkTimeout":{"request":15000},
+  "sitemapLocation":"sitemap.json"
+}

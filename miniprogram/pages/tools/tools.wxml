@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="page-title">🛠️ 便民工具</view>
+  <view class="tool-list">
+    <view class="tool-item"><text class="t-icon">📄</text><view><text class="t-title">法律文书参考</text><text class="t-desc">借条·租房合同·离婚协议·遗嘱格式</text></view></view>
+    <view class="tool-item"><text class="t-icon">🧮</text><view><text class="t-title">诉讼费计算器</text><text class="t-desc">输入标的额自动计算费用</text></view></view>
+    <view class="tool-item"><text class="t-icon">📞</text><view><text class="t-title">法律援助地图</text><text class="t-desc">附近法援中心·12348一键拨打</text></view></view>
+    <view class="tool-item"><text class="t-icon">📸</text><view><text class="t-title">取证指引</text><text class="t-desc">交通事故·家暴·劳动纠纷·消费维权</text></view></view>
+  </view>
+  <view class="hotline" bindtap="callHotline">📞 一键拨打法律援助热线 12348</view>
+</view>

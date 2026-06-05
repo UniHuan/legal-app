@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="page-title">📖 法典全文</view>
+  <view class="search-bar"><input placeholder="搜索法条或输入编号直达..." bindinput="onSearch" value="{{query}}"/></view>
+  <view wx:for="{{articles}}" wx:key="article_number" class="article-row" bindtap="goArticle" data-num="{{item.article_number}}">
+    <text class="a-num">第{{item.article_number}}条</text>
+    <text class="a-liner">{{item.one_liner}}</text>
+  </view>
+  <view class="hotline">📞 法律援助热线 12348</view>
+</view>

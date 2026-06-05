@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="法治同行 - 一本你真正能读懂的民法典。1260条法条+生活场景+AI问答。完全免费，不用注册。">
+<meta name="keywords" content="民法典,法律科普,AI法律问答,法律咨询,普法,法治,社会主义核心价值观">
+<meta name="theme-color" content="#1A56DB">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+<title>法治同行 - 一本你真正能读懂的民法典</title>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app-layout" id="app">
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo" onclick="app.navigate('home')">
+      <span class="logo-icon">⚖️</span>
+      <div>
+        <div class="logo-text">法治同行</div>
+        <div class="logo-sub">民法典科普平台</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">主导航</div>
+      <button class="nav-link active" data-page="home">
+        <span class="nav-icon">🏠</span> <span>首页</span>
+      </button>
+      <button class="nav-link" data-page="values">
+        <span class="nav-icon">🌍</span> <span>价值观地图</span>
+      </button>
+      <button class="nav-link" data-page="code">
+        <span class="nav-icon">📖</span> <span>法典全文</span>
+      </button>
+      <button class="nav-link" data-page="ai">
+        <span class="nav-icon">💬</span> <span>AI 智能问答</span>
+        <span class="nav-badge">免费</span>
+      </button>
+      <button class="nav-link" data-page="tools">
+        <span class="nav-icon">🛠️</span> <span>便民工具</span>
+      </button>
+      <div class="nav-section">学习</div>
+      <button class="nav-link" data-page="quiz">
+        <span class="nav-icon">📝</span> <span>每日一题</span>
+      </button>
+    </nav>
+    <div class="sidebar-footer">
+      <span>📞 法律援助热线</span>
+      <div class="hotline" onclick="window.location.href='tel:12348'">12348</div>
+      <div style="margin-top:8px;font-size:11px;">
+        <a href="about.html" style="color:var(--text-secondary);text-decoration:none;">关于</a> ·
+        <a href="privacy.html" style="color:var(--text-secondary);text-decoration:none;">隐私</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== MAIN ==================== -->
+  <main class="main-content">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" placeholder="描述你的情况，比如：租房合同没到期房东要卖房..." id="globalSearch"
+               onkeydown="if(event.key==='Enter') app.searchGlobal(this.value)">
+        <span class="search-hint">⌘K</span>
+      </div>
+      <div class="top-actions">
+        <button class="btn-elders" onclick="app.toggleElders()" id="btnElders">👴 银发模式</button>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE: HOME ==================== -->
+    <div class="page active" id="page-home">
+      <div class="hero">
+        <h1>一本你真正能读懂的民法典</h1>
+        <p>1260条法条 → 200+生活场景 → 12个核心价值观<br>不用注册 · 完全免费 · 打开即用</p>
+        <div class="hero-search">
+          <span>🔍</span>
+          <input type="text" placeholder="比如：房东卖房我能不搬吗？" id="heroSearch"
+                 onkeydown="if(event.key==='Enter') app.searchGlobal(this.value)">
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="num" id="statArticles">1,260</div><div class="label">法条全覆盖</div></div>
+          <div class="hero-stat"><div class="num" id="statScenarios">--</div><div class="label">生活场景</div></div>
+          <div class="hero-stat"><div class="num">12</div><div class="label">核心价值观</div></div>
+          <div class="hero-stat"><div class="num">免费</div><div class="label">永久免费</div></div>
+        </div>
+      </div>
+
+      <div class="grid-2 home-quick">
+        <div class="ai-card" onclick="app.navigate('ai')">
+          <div class="ai-header"><span>💬</span><span class="ai-title">AI 智能问答</span></div>
+          <div class="ai-desc">基于民法典全量知识库，用自然语言为你解答法律问题。</div>
+          <div class="ai-examples">
+            <span class="ai-example" onclick="event.stopPropagation();app.navigate('ai','房东卖房我能不搬吗')">房东卖房我能不搬吗</span>
+            <span class="ai-example" onclick="event.stopPropagation();app.navigate('ai','收到假货退一赔三怎么操作')">收到假货退一赔三</span>
+            <span class="ai-example" onclick="event.stopPropagation();app.navigate('ai','没打借条能要回钱吗')">没打借条能要回钱吗</span>
+          </div>
+        </div>
+        <div class="card category-card">
+          <div class="card-title"><span>📂</span> 场景分类浏览</div>
+          <div class="card-desc">按生活场景查找法律知识</div>
+          <div class="category-grid" id="homeCategories"></div>
+        </div>
+      </div>
+
+      <div class="section-header"><h2>🔥 大家都在看</h2></div>
+      <div class="grid-2" id="hotScenarios"><div class="loading">加载中...</div></div>
+
+      <div class="section-header"><h2>🛠️ 便民工具</h2></div>
+      <div class="grid-4" id="homeTools">
+        <div class="card tool-mini" onclick="app.navigate('tools')"><div class="t-icon">📄</div><div class="t-label">法律文书参考</div></div>
+        <div class="card tool-mini" onclick="app.navigate('tools')"><div class="t-icon">🧮</div><div class="t-label">诉讼费计算器</div></div>
+        <div class="card tool-mini" onclick="app.navigate('tools')"><div class="t-icon">📞</div><div class="t-label">法援地图</div></div>
+        <div class="card tool-mini" onclick="app.navigate('tools')"><div class="t-icon">📸</div><div class="t-label">取证指引</div></div>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE: VALUES ==================== -->
+    <div class="page" id="page-values">
+      <div class="page-title-area"><h1>🌍 价值观地图</h1><p>12个社会主义核心价值观，每一个都在民法典中有制度支撑。</p></div>
+      <div id="valuesContent"><div class="loading">加载中...</div></div>
+    </div>
+
+    <!-- ==================== PAGE: CODE ==================== -->
+    <div class="page" id="page-code">
+      <div class="page-title-area"><h1>📖 法典全文</h1><p>《中华人民共和国民法典》· 7编+附则 · 1260条 · 2021年1月1日施行</p></div>
+      <div class="search-box" style="margin-bottom:16px;">
+        <span>🔍</span>
+        <input type="text" placeholder="搜索法条或输入编号直达..." id="codeSearch"
+               onkeydown="if(event.key==='Enter') app.searchArticles(this.value)">
+      </div>
+      <div class="grid-2" id="bookList"><div class="loading">加载中...</div></div>
+    </div>
+
+    <!-- ==================== PAGE: CATEGORY ==================== -->
+    <div class="page" id="page-category">
+      <div class="back-link"><a href="javascript:app.navigate('home')">← 返回首页</a></div>
+      <div id="categoryContent"><div class="loading">加载中...</div></div>
+    </div>
+
+    <!-- ==================== PAGE: AI ==================== -->
+    <div class="page" id="page-ai" style="padding:0;">
+      <div class="ai-layout">
+        <div class="ai-chat">
+          <div class="ai-chat-header">
+            <span>💬</span><span class="ai-name">AI 智能问答</span>
+            <span class="ai-badge">免费 · 不限次</span>
+          </div>
+          <div class="ai-messages" id="aiMessages">
+            <div class="ai-welcome">
+              <div>💬</div>
+              <div>法律问题，直接问我</div>
+              <div>基于民法典全量知识库 + AI 智能分析</div>
+              <div class="ai-disclaimer">本回答不构成正式法律意见</div>
+            </div>
+          </div>
+          <div class="ai-input-area">
+            <textarea placeholder="输入你的法律问题..." id="aiInput"
+                      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();app.askAI()}"></textarea>
+            <button class="send-btn" onclick="app.askAI()">↑</button>
+          </div>
+        </div>
+        <div class="ai-sidebar">
+          <div class="side-card"><h4>⚡ 试试这些问题</h4>
+            <div class="rel-item" onclick="app.askPreset('租的房子房东突然要卖，我能不搬吗？')">🏠 房东卖房，租客能继续住吗？</div>
+            <div class="rel-item" onclick="app.askPreset('网购收到假货，能退一赔三吗？具体怎么操作？')">🛒 买到假货，怎么索赔？</div>
+            <div class="rel-item" onclick="app.askPreset('没打借条，朋友借的钱能要回来吗？')">💰 没打借条，怎么要回欠款？</div>
+            <div class="rel-item" onclick="app.askPreset('楼上邻居装修早上6点就开始钻墙，我能投诉吗？')">🔨 邻居装修噪音扰民</div>
+            <div class="rel-item" onclick="app.askPreset('夫妻一方偷偷借的钱，另一方要还吗？')">👨‍👩‍👧 夫妻单方债务</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE: SCENE DETAIL ==================== -->
+    <div class="page" id="page-scene-detail">
+      <div class="back-link"><a href="javascript:app.navigate('home')">← 返回首页</a></div>
+      <div id="sceneDetail"><div class="loading">加载中...</div></div>
+    </div>
+
+    <!-- ==================== PAGE: VALUE DETAIL ==================== -->
+    <div class="page" id="page-value-detail">
+      <div class="back-link"><a href="javascript:app.navigate('values')">← 返回价值观地图</a></div>
+      <div id="valueDetail"><div class="loading">加载中...</div></div>
+    </div>
+
+    <!-- ==================== PAGE: ARTICLE DETAIL ==================== -->
+    <div class="page" id="page-article-detail">
+      <div class="back-link"><a href="javascript:app.navigate('code')">← 返回法典</a></div>
+      <div id="articleDetail"><div class="loading">加载中...</div></div>
+    </div>
+
+    <!-- ==================== PAGE: TOOLS ==================== -->
+    <div class="page" id="page-tools">
+      <div class="page-title-area"><h1>🛠️ 便民工具</h1><p>免费实用的法律辅助工具。</p></div>
+      <div class="tool-grid">
+        <div class="tool-card-lg" onclick="app.showTemplates()">
+          <span class="t-icon">📄</span><div><div class="t-title">法律文书参考</div><div class="t-desc">借条 · 租房合同 · 离婚协议 · 遗嘱格式 · 劳务合同</div></div>
+        </div>
+        <div class="tool-card-lg" onclick="app.showCalculator()">
+          <span class="t-icon">🧮</span><div><div class="t-title">诉讼费计算器</div><div class="t-desc">财产案件 · 离婚案件 · 劳动争议</div></div>
+        </div>
+        <div class="tool-card-lg" onclick="app.showLocations()">
+          <span class="t-icon">📞</span><div><div class="t-title">法律援助地图</div><div class="t-desc">附近法援中心 · 公证处 · 调解委员会</div></div>
+        </div>
+        <div class="tool-card-lg" onclick="app.showEvidenceGuide()">
+          <span class="t-icon">📸</span><div><div class="t-title">取证指引</div><div class="t-desc">交通事故 · 家暴 · 劳动纠纷 · 消费维权 · 网络侵权</div></div>
+        </div>
+      </div>
+      <div class="hotline-banner">
+        <div class="hl-label">📞 全国法律援助热线</div>
+        <div class="hl-number">12348</div>
+        <div class="hl-note">免费 · 24小时 · 专业律师接听</div>
+      </div>
+      <div id="toolsContent"></div>
+    </div>
+
+    <!-- ==================== PAGE: QUIZ ==================== -->
+    <div class="page" id="page-quiz">
+      <div class="page-title-area"><h1>📝 每日一题</h1><p>每天一道民法典知识问答，积少成多。</p></div>
+      <div id="quizContent"><div class="loading">加载中...</div></div>
+    </div>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

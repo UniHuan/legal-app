@@ -1,0 +1,27 @@
+<view class="container">
+  <view wx:if="{{scene}}" class="scene-detail">
+    <view class="scene-header">
+      <text class="scene-title">{{scene.title}}</text>
+    </view>
+    <view class="conclusion-box {{scene.conclusion_type}}">{{scene.conclusion}}</view>
+    <view class="section-title">📋 你可以这样做</view>
+    <view class="steps">
+      <view wx:for="{{scene.steps}}" wx:key="index" class="step-item">
+        <text class="step-num">{{index+1}}</text>
+        <text>{{item}}</text>
+      </view>
+    </view>
+    <view class="section-title">📜 法律怎么说</view>
+    <view class="card"><text>{{scene.legal_analysis}}</text></view>
+    <view wx:if="{{scene.warnings && scene.warnings.length>0}}" class="warning-box">
+      <text>⚠️ 容易踩的坑：</text>
+      <text wx:for="{{scene.warnings}}" wx:key="index">· {{item}}</text>
+    </view>
+    <view class="tags">
+      <text wx:for="{{scene.value_tags}}" wx:key="index" class="tag">{{item}}</text>
+    </view>
+    <button class="ai-btn" bindtap="askAI">💬 还有疑问？问AI</button>
+  </view>
+  <view wx:else class="loading">加载中...</view>
+  <view class="hotline">📞 法律援助热线 12348</view>
+</view>

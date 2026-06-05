@@ -1,0 +1,17 @@
+<view class="container ai-container">
+  <scroll-view class="ai-messages" scroll-y scroll-into-view="{{lastId}}">
+    <view wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}" class="ai-bubble {{item.role}}">
+      <rich-text nodes="{{item.content}}"></rich-text>
+    </view>
+    <view wx:if="{{loading}}" class="ai-bubble bot"><text>正在分析...</text></view>
+  </scroll-view>
+  <view class="ai-presets">
+    <text class="preset" bindtap="askPreset" data-q="房东卖房我能不搬吗">🏠房东卖房</text>
+    <text class="preset" bindtap="askPreset" data-q="收到假货退一赔三怎么操作">🛒假货索赔</text>
+    <text class="preset" bindtap="askPreset" data-q="没打借条能要回钱吗">💰借贷纠纷</text>
+  </view>
+  <view class="ai-input">
+    <input placeholder="输入法律问题..." value="{{input}}" bindinput="onInput" confirm-type="send" bindconfirm="doAsk"/>
+    <button bindtap="doAsk">发送</button>
+  </view>
+</view>

@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="page-title">📝 每日一题</view>
+  <view wx:if="{{quiz}}" class="quiz-box">
+    <text class="q-date">{{quiz.publish_date}}</text>
+    <text class="q-question">{{quiz.question}}</text>
+    <view wx:for="{{quiz.options}}" wx:key="label" class="q-option {{item.status}}" bindtap="checkAnswer" data-label="{{item.label}}">
+      <text>{{item.label}}. {{item.text}}</text>
+    </view>
+    <view wx:if="{{answered}}" class="q-explain">{{quiz.explanation}}</view>
+  </view>
+  <view wx:else class="loading">今日题目加载中...</view>
+  <view class="hotline">📞 法律援助热线 12348</view>
+</view>

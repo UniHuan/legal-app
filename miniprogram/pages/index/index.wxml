@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="search-bar">
+    <input placeholder="描述你的情况，比如：房东卖房我能不搬吗？" bindinput="onSearchInput" value="{{searchText}}"/>
+    <button class="search-btn" bindtap="doSearch">搜索</button>
+  </view>
+  <view class="ai-entry" bindtap="goAI">
+    <text class="ai-icon">💬</text>
+    <view><text class="ai-title">AI 智能问答</text><text class="ai-desc">免费不限次</text></view>
+  </view>
+  <view class="section-title">📂 场景分类</view>
+  <view class="grid-4">
+    <view class="grid-item" wx:for="{{categories}}" wx:key="key" bindtap="goCategory" data-cat="{{item.key}}">
+      <text class="emoji">{{item.icon}}</text><text>{{item.label}}</text>
+    </view>
+  </view>
+  <view class="section-title">🔥 大家都在看</view>
+  <view class="scene-card" wx:for="{{scenes}}" wx:key="id" bindtap="goScene" data-id="{{item.id}}">
+    <text class="s-title">{{item.title}}</text>
+    <view class="s-conclusion {{item.conclusion_type}}">{{item.conclusion}}</view>
+  </view>
+  <view class="hotline">📞 法律援助热线 12348</view>
+</view>
