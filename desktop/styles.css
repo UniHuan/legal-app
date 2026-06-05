@@ -341,3 +341,71 @@ body {
 
 /* Animations */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* === 场景详情 === */
+.scene-header { margin-bottom: 24px; }
+.scene-header h1 { font-size: 26px; font-weight: 700; }
+.scene-meta { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.conclusion-box { border-radius: var(--radius); padding: 20px; margin-bottom: 20px; font-size: 16px; font-weight: 600; }
+.conclusion-box.good { background: var(--green-light); color: #166534; border: 1px solid #86EFAC; }
+.conclusion-box.warn { background: var(--yellow-bg); color: #92400E; border: 1px solid var(--yellow-border); }
+.conclusion-box.bad { background: var(--red-light); color: #991B1B; }
+.detail-grid { display: grid; grid-template-columns: 1fr 360px; gap: 24px; }
+.detail-main .section { margin-bottom: 24px; }
+.detail-main .section h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.step-list { list-style: none; }
+.step-list li { padding: 12px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; font-size: 14px; }
+.step-list li:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; background: var(--blue); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.warning-box { background: var(--yellow-bg); border: 1px solid var(--yellow-border); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px; font-size: 13px; color: #92400E; line-height: 1.8; }
+.detail-sidebar .side-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
+.side-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.side-card .rel-item { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; cursor: pointer; color: var(--text-secondary); }
+.side-card .rel-item:hover { color: var(--blue); }
+.side-card .rel-item:last-child { border-bottom: none; }
+.back-link { margin-bottom: 16px; }
+.back-link a { color: var(--blue); font-size: 14px; text-decoration: none; }
+.collapse-trigger { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; cursor: pointer; font-weight: 600; font-size: 14px; border-bottom: 1px solid var(--border); }
+.collapse-content { display: none; padding: 14px 0; font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+.collapse-content.show { display: block; }
+.scene-card { background: var(--card); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; }
+.scene-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.scene-card .s-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.scene-card .s-conclusion { padding: 8px 12px; border-radius: 6px; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
+.s-conclusion.good { background: var(--green-light); color: #166534; }
+.s-conclusion.warn { background: var(--yellow-bg); color: #92400E; }
+.s-conclusion.bad { background: var(--red-light); color: #991B1B; }
+.article-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.article-number { font-size: 24px; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+.article-original { font-size: 15px; line-height: 1.9; padding: 16px; background: var(--bg); border-radius: var(--radius-sm); border-left: 4px solid var(--blue); }
+.article-plain { font-size: 15px; line-height: 1.8; padding: 16px; background: var(--blue-light); border-radius: var(--radius-sm); }
+.quiz-option { padding: 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); cursor: pointer; text-align: left; font-size: 14px; margin-bottom: 8px; }
+.quiz-option:hover { border-color: var(--blue); }
+.quiz-option.correct { background: var(--green-light) !important; border-color: var(--green) !important; color: #166534 !important; }
+.quiz-option.wrong { background: var(--red-light) !important; border-color: var(--red) !important; color: #991B1B !important; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* === 首页分类+热门 === */
+.home-quick { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.category-card { background: var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:20px; }
+.category-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:12px; }
+.cat-item { font-size:12px; text-align:center; padding:10px 6px; border-radius:var(--radius-sm); background:var(--bg); cursor:pointer; transition:all 0.15s; color:var(--text); }
+.cat-item:hover { background:var(--blue-light); color:var(--blue); transform:scale(1.02); }
+.section-title { font-size:16px; font-weight:700; margin:20px 0 12px; }
+
+/* === AI入口卡片 === */
+.ai-card { background:linear-gradient(135deg,#EFF6FF,#DBEAFE); border:1px solid #BFDBFE; border-radius:var(--radius); padding:24px; cursor:pointer; transition:all 0.2s; }
+.ai-card:hover { box-shadow:var(--shadow-md); border-color:var(--blue); }
+.ai-card .ai-header { display:flex; align-items:center; gap:12px; font-size:36px; margin-bottom:12px; }
+.ai-card .ai-header .ai-title { font-size:18px; font-weight:700; color:var(--blue-dark); }
+.ai-card .ai-desc { font-size:14px; color:var(--text-secondary); }
+.ai-examples { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+.ai-example { background:#fff; border:1px solid var(--border); border-radius:20px; padding:6px 14px; font-size:12px; color:var(--text-secondary); cursor:pointer; transition:all 0.15s; }
+.ai-example:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-light); }
+
+/* === 场景卡片 === */
+.section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.section-header h2 { font-size:18px; font-weight:700; }
+
+/* === 加载状态 === */
+.loading { text-align:center; color:var(--text-secondary); padding:40px 20px; font-size:14px; }

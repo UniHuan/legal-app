@@ -31,15 +31,30 @@
       <div class="top-actions"><button class="btn-elders" onclick="document.body.classList.toggle('elders-mode')">👴 银发模式</button></div>
     </div>
     <div class="page active" id="page-home"></div>
-    <div class="page" id="page-values"></div>
-    <div class="page" id="page-code"></div>
-    <div class="page" id="page-ai" style="padding:0;"></div>
-    <div class="page" id="page-scene"></div>
-    <div class="page" id="page-article"></div>
-    <div class="page" id="page-tools"></div>
-    <div class="page" id="page-quiz"></div>
+    <div class="page" id="page-values" style="padding:24px"></div>
+    <div class="page" id="page-code" style="padding:24px"></div>
+    <div class="page" id="page-ai" style="padding:0;">
+      <div class="ai-layout">
+        <div class="ai-chat">
+          <div class="ai-chat-header"><span>💬</span><span class="ai-name">AI 智能问答</span><span class="ai-badge">免费·不限次</span></div>
+          <div class="ai-messages"><div class="ai-welcome"><div>💬</div><div>法律问题，直接问我</div><div style="font-size:13px;margin-top:4px;">基于民法典全量知识库+AI智能分析</div><div style="font-size:11px;color:#94A3B8;margin-top:8px;">本回答不构成正式法律意见</div></div></div>
+          <div class="ai-input-area"><textarea placeholder="输入你的法律问题..." id="aiTextarea" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();desktop.askAI()}"></textarea><button class="send-btn" onclick="desktop.askAI()">↑</button></div>
+        </div>
+        <div class="ai-sidebar">
+          <div class="side-card"><h4>⚡ 试试这些问题</h4>
+            <div class="rel-item" onclick="desktop.quickAsk('房东卖房我能不搬吗')">🏠 房东卖房，租客能继续住吗？</div>
+            <div class="rel-item" onclick="desktop.quickAsk('收到假货退一赔三怎么操作')">🛒 买到假货，怎么索赔？</div>
+            <div class="rel-item" onclick="desktop.quickAsk('没打借条能要回钱吗')">💰 没打借条，怎么要回欠款？</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page" id="page-scene" style="padding:24px"></div>
+    <div class="page" id="page-article" style="padding:24px"></div>
+    <div class="page" id="page-tools" style="padding:24px"></div>
+    <div class="page" id="page-quiz" style="padding:24px"></div>
     <div class="page" id="page-value-detail"></div>
-    <div class="page" id="page-category"></div>
+    <div class="page" id="page-category" style="padding:24px"></div>
   </main>
 </div>
 <script src="app.js"></script>

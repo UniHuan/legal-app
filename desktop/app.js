@@ -25,7 +25,7 @@ const desktop = {
     if (!q || q.length < 2) return;
     const scenes = await api.searchScenes(q);
     if (scenes.length > 0) return this.openScene(scenes[0].id);
-    this.navigate('ai'); setTimeout(() => { const inp = document.querySelector('#page-ai textarea'); if (inp) { inp.value = q; desktop.askAI(); } }, 400);
+    this.navigate('ai'); setTimeout(() => { const inp = document.getElementById('aiTextarea'); if (inp) { inp.value = q; desktop.askAI(); } }, 400);
   },
 
   // Home
@@ -63,13 +63,14 @@ const desktop = {
         <div class="section"><h3>📋 你可以这样做</h3><div class="card"><ol class="step-list">${(s.steps||[]).map((st,i)=>`<li><span class="step-num">${i+1}</span><span>${st}</span></li>`).join('')}</ol></div></div>
         <div class="section"><h3>📜 法律怎么说</h3><div class="card">${s.legal_analysis}</div></div>
         ${(s.warnings||[]).length?`<div class="warning-box"><strong>⚠️ 容易踩的坑：</strong>${s.warnings.map(w=>`<div>· ${w}</div>`).join('')}</div>`:''}
-        <button class="card" style="width:100%;text-align:center;font-weight:600;color:var(--blue);padding:14px;" onclick="desktop.navigate('ai');setTimeout(()=>{const inp=document.querySelector('#page-ai textarea');if(inp){inp.value='${s.title.replace(/'/g,"\\'")}';desktop.askAI();}},400)">💬 还有疑问？问AI</button>
+        <button class="card" style="width:100%;text-align:center;font-weight:600;color:var(--blue);padding:14px;" onclick="desktop.navigate('ai');setTimeout(()=>{const inp=document.getElementById('aiTextarea');if(inp){inp.value='${s.title.replace(/'/g,"\\'")}';desktop.askAI();}},400)">💬 还有疑问？问AI</button>
       </div><div class="detail-sidebar"><div class="side-card"><h4>📞 法律援助</h4><div class="hotline-banner" style="margin:0;"><div class="hl-number">12348</div></div></div></div></div>`;
   },
 
   // AI
+  quickAsk(q) { this.navigate('ai'); const ta=document.getElementById('aiTextarea'); if(ta){ta.value=q;setTimeout(()=>this.askAI(),300);} },
   async askAI() {
-    const textarea = document.querySelector('#page-ai textarea');
+    const textarea = document.getElementById('aiTextarea');
     const q = textarea?.value?.trim(); if (!q) return;
     const container = document.querySelector('#page-ai .ai-messages');
     const wel = container.querySelector('.ai-welcome'); if (wel) wel.remove();
