@@ -14,7 +14,7 @@ export default async function DesktopArticle({params}:{params:Promise<{num:strin
         </div>
         <div className="p-6 space-y-4">
           <div className="bg-[#F0F4FA] rounded-xl p-5 text-sm leading-relaxed"><strong>💬 大白话：</strong>{a.content_plain}</div>
-          <div className="bg-[#F9F8F5] rounded-xl p-5 border-l-[3px] border-[#1D4ED8] text-sm leading-relaxed"><strong>📜 法条原文：</strong><br/>{a.content_original}</div>
+          <div className="bg-[#F9F8F5] rounded-xl p-5 border-l-2 border-[#1D4ED8] text-sm leading-relaxed"><strong>📜 法条原文：</strong><br/>{a.content_original}</div>
         </div>
       </div>
     </>

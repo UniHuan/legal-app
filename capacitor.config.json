@@ -1,0 +1,9 @@
+{
+  "appId": "com.unihuan.legalmate",
+  "appName": "法治同行",
+  "webDir": "public",
+  "server": {
+    "url": "https://www.unihuan.cyou/mobile",
+    "cleartext": false
+  }
+}

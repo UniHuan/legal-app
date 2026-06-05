@@ -10,7 +10,7 @@ export default async function MobileArticle({params}:{params:Promise<{num:string
       <div className="text-[22px] font-bold text-[#1D4ED8] mb-1">第{a.article_number}条</div>
       <div className="text-xs text-[#6B7194] mb-3">{a.book_title}</div>
       <div className="bg-[#F0F4FA] rounded-2xl p-4 mb-3 text-sm leading-relaxed"><strong>💬 大白话：</strong>{a.content_plain}</div>
-      <div className="bg-white rounded-2xl p-4 border-l-[3px] border-[#1D4ED8] text-sm leading-relaxed shadow-sm"><strong>📜 法条原文：</strong><br/>{a.content_original}</div>
+      <div className="bg-white rounded-2xl p-4 border-l-2 border-[#1D4ED8] text-sm leading-relaxed shadow-sm"><strong>📜 法条原文：</strong><br/>{a.content_original}</div>
     </>
   );
 }

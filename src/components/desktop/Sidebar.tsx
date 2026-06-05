@@ -31,7 +31,7 @@ export default function Sidebar() {
               const active = path===item.href || (item.href!=='/desktop' && path.startsWith(item.href));
               return (
                 <Link key={item.href} href={item.href}
-                  className={`flex items-center gap-2.5 px-5 py-2.5 text-sm no-underline transition-all border-l-[3px] ${
+                  className={`flex items-center gap-2.5 px-5 py-2.5 text-sm no-underline transition-all border-l-2 ${
                     active?'bg-[#E8EEFB] text-[#1D4ED8] font-semibold border-l-[#1D4ED8]':'text-[#6B7194] border-l-transparent hover:bg-[#F9F8F5] hover:text-[#1A1F36]'
                   }`}>
                   <span className="text-lg w-6 text-center">{item.icon}</span>

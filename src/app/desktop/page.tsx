@@ -2,9 +2,33 @@ import Link from 'next/link';
 import { getScenarios } from '@/lib/api';
 import { CATEGORIES } from '@/lib/constants';
 import SceneCard from '@/components/shared/SceneCard';
+import type { Scenario } from '@/lib/types';
 
-export default async function DesktopHome() {
-  const scenes = await getScenarios(8);
+export default async function DesktopHome({searchParams}:{searchParams:Promise<{cat?:string}>}) {
+  const {cat} = await searchParams;
+  const scenes = await getScenarios(cat ? 50 : 8, cat);
+  const catInfo = cat ? CATEGORIES[cat] : null;
+
+  if (catInfo) {
+    return (
+      <>
+        <Link href="/desktop" className="text-sm text-[#1D4ED8] font-medium mb-4 inline-block">← 返回首页</Link>
+        <div className="flex items-center gap-4 p-5 bg-[#F0F4FA] rounded-2xl mb-6">
+          <span className="text-4xl">{catInfo.icon}</span>
+          <div>
+            <h1 className="text-2xl font-bold text-[#1D4ED8]">{catInfo.label}</h1>
+            <p className="text-sm text-[#6B7194]">共 {scenes.length} 个场景</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          {scenes.map((s:Scenario,i:number)=>(
+            <SceneCard key={s.id} scene={s} delay={i*0.05} href={`/desktop/scene/${s.id}`} />
+          ))}
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <div className="bg-gradient-to-br from-[#1A1F36] via-[#1E3A5F] to-[#1D4ED8] rounded-2xl p-11 text-white mb-7 relative overflow-hidden">
@@ -20,10 +44,7 @@ export default async function DesktopHome() {
 
       <div className="grid grid-cols-2 gap-4 mb-7">
         <Link href="/desktop/ai" className="block bg-gradient-to-br from-[#F0F4FA] to-[#E8EFF9] rounded-2xl p-6 border border-blue-500/10 no-underline hover:shadow-md transition-all">
-          <div className="flex items-center gap-3 mb-3.5">
-            <span className="text-4xl">💬</span>
-            <span className="text-lg font-bold text-[#1D4ED8]">AI 智能问答</span>
-          </div>
+          <div className="flex items-center gap-3 mb-3.5"><span className="text-4xl">💬</span><span className="text-lg font-bold text-[#1D4ED8]">AI 智能问答</span></div>
           <p className="text-sm text-[#6B7194] mb-3.5">基于民法典全量知识库，免费不限次</p>
           <div className="flex gap-2 flex-wrap">
             <span className="bg-white border border-black/5 rounded-full px-3.5 py-1.5 text-xs text-[#6B7194]">房东卖房我能不搬吗</span>
@@ -44,11 +65,9 @@ export default async function DesktopHome() {
         </div>
       </div>
 
-      <div className="flex justify-between items-center mb-4 mt-6">
-        <h2 className="text-lg font-bold">🔥 大家都在看</h2>
-      </div>
+      <div className="flex justify-between items-center mb-4 mt-6"><h2 className="text-lg font-bold">🔥 大家都在看</h2></div>
       <div className="grid grid-cols-2 gap-4">
-        {scenes.map((s:any,i:number)=>(
+        {scenes.map((s:Scenario,i:number)=>(
           <SceneCard key={s.id} scene={s} delay={i*0.05} href={`/desktop/scene/${s.id}`} />
         ))}
       </div>

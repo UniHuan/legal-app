@@ -6,6 +6,7 @@ const tabs = [
   {href:'/mobile/values',label:'价值观',icon:'🌍'},
   {href:'/mobile/code',label:'法典全文',icon:'📖'},
   {href:'/mobile/ai',label:'AI问答',icon:'💬'},
+  {href:'/mobile/quiz',label:'题库',icon:'📝'},
 ];
 export default function TabBar() {
   const path = usePathname();

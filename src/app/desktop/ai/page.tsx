@@ -6,6 +6,7 @@ export default function DesktopAI() {
   const [messages, setMessages] = useState<Array<{role:string;content:string}>>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const onVoice = (text:string) => { setInput(text); };
 
   async function send(q?:string) {
     const question = q || input.trim(); if(!question) return;
@@ -17,7 +18,7 @@ export default function DesktopAI() {
   }
 
   return (
-    <div className="grid grid-cols-[1fr_300px] h-[calc(100vh-120px)] gap-0">
+    <div className="grid grid-cols-[1fr_300px] h-[calc(100dvh-120px)] gap-0">
       <div className="flex flex-col bg-white rounded-2xl border border-black/5 shadow-sm overflow-hidden">
         <div className="flex items-center gap-2.5 px-5 py-4 border-b border-black/5 font-semibold text-sm">
           💬 AI 智能问答 <span className="text-[11px] text-green-600 bg-green-50 px-2 py-0.5 rounded-full">免费</span>
