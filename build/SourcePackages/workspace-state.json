@@ -13,13 +13,13 @@
           "location" : "https://github.com/ionic-team/capacitor-swift-pm.git",
           "name" : "capacitor-swift-pm"
         },
-        "path" : "/Users/xurui/Projects/SkillsUpdate/legal-app/build/SourcePackages/artifacts/capacitor-swift-pm/Capacitor/Capacitor.xcframework",
+        "path" : "/Users/xurui/Projects/SkillsUpdate/legal-app/build/SourcePackages/artifacts/capacitor-swift-pm/Cordova/Cordova.xcframework",
         "source" : {
-          "checksum" : "acba9b13179f5775f2124d47cb6689968eeb37c724392204ecf0deb9669d3324",
+          "checksum" : "685b9d832d7e8b44e0da63366530708a5d70a4eba4a3271b47aa73f246d0eda7",
           "type" : "remote",
-          "url" : "https://github.com/ionic-team/capacitor-swift-pm/releases/download/8.4.0/Capacitor.xcframework.zip"
+          "url" : "https://github.com/ionic-team/capacitor-swift-pm/releases/download/8.4.0/Cordova.xcframework.zip"
         },
-        "targetName" : "Capacitor"
+        "targetName" : "Cordova"
       },
       {
         "kind" : {
@@ -33,13 +33,13 @@
           "location" : "https://github.com/ionic-team/capacitor-swift-pm.git",
           "name" : "capacitor-swift-pm"
         },
-        "path" : "/Users/xurui/Projects/SkillsUpdate/legal-app/build/SourcePackages/artifacts/capacitor-swift-pm/Cordova/Cordova.xcframework",
+        "path" : "/Users/xurui/Projects/SkillsUpdate/legal-app/build/SourcePackages/artifacts/capacitor-swift-pm/Capacitor/Capacitor.xcframework",
         "source" : {
-          "checksum" : "685b9d832d7e8b44e0da63366530708a5d70a4eba4a3271b47aa73f246d0eda7",
+          "checksum" : "acba9b13179f5775f2124d47cb6689968eeb37c724392204ecf0deb9669d3324",
           "type" : "remote",
-          "url" : "https://github.com/ionic-team/capacitor-swift-pm/releases/download/8.4.0/Cordova.xcframework.zip"
+          "url" : "https://github.com/ionic-team/capacitor-swift-pm/releases/download/8.4.0/Capacitor.xcframework.zip"
         },
-        "targetName" : "Cordova"
+        "targetName" : "Capacitor"
       }
     ],
     "dependencies" : [

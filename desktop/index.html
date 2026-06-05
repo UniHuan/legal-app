@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="法治同行 - 民法典科普平台">
+<title>法治同行 - 一本你真正能读懂的民法典</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="../shared/api.js"></script>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo" onclick="desktop.navigate('home')"><span class="logo-icon">⚖️</span><div><div class="logo-text">法治同行</div><div class="logo-sub">民法典科普平台</div></div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">主导航</div>
+      <button class="nav-link active" data-page="home"><span class="nav-icon">🏠</span><span>首页</span></button>
+      <button class="nav-link" data-page="values"><span class="nav-icon">🌍</span><span>价值观地图</span></button>
+      <button class="nav-link" data-page="code"><span class="nav-icon">📖</span><span>法典全文</span></button>
+      <button class="nav-link" data-page="ai"><span class="nav-icon">💬</span><span>AI 智能问答</span><span class="nav-badge">免费</span></button>
+      <button class="nav-link" data-page="tools"><span class="nav-icon">🛠️</span><span>便民工具</span></button>
+      <div class="nav-section">学习</div>
+      <button class="nav-link" data-page="quiz"><span class="nav-icon">📝</span><span>每日一题</span></button>
+    </nav>
+    <div class="sidebar-footer"><span>📞 法律援助热线</span><div class="hotline" onclick="location.href='tel:12348'">12348</div></div>
+  </aside>
+  <main class="main-content">
+    <div class="top-bar">
+      <div class="search-box"><span>🔍</span><input type="text" placeholder="描述你的情况..." id="globalSearch" onkeydown="if(event.key==='Enter')desktop.searchGlobal(this.value)"><span class="search-hint">⌘K</span></div>
+      <div class="top-actions"><button class="btn-elders" onclick="document.body.classList.toggle('elders-mode')">👴 银发模式</button></div>
+    </div>
+    <div class="page active" id="page-home"></div>
+    <div class="page" id="page-values"></div>
+    <div class="page" id="page-code"></div>
+    <div class="page" id="page-ai" style="padding:0;"></div>
+    <div class="page" id="page-scene"></div>
+    <div class="page" id="page-article"></div>
+    <div class="page" id="page-tools"></div>
+    <div class="page" id="page-quiz"></div>
+    <div class="page" id="page-value-detail"></div>
+    <div class="page" id="page-category"></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
