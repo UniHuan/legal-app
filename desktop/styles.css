@@ -447,3 +447,7 @@ body {
 .article-detail-card .art-original-lg { padding:16px;background:var(--bg);border-radius:var(--radius-sm);border-left:4px solid var(--blue);font-size:15px;line-height:1.9;color:var(--text); }
 .article-detail-card .art-footer { padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center; }
 .article-detail-card .art-footer .art-label { font-size:12px;color:var(--text-secondary); }
+
+/* === 页面切换 === */
+.page { display:none; padding:24px; max-width:1200px; }
+.page.active { display:block; }

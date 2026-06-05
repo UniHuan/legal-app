@@ -1,23 +1,40 @@
 // 桌面端应用逻辑 (基于prototype_web.html)
 const desktop = {
   currentPage: 'home',
+  pageEls: {},
 
-  async init() { await this.loadHome(); this.bindNav(); },
-  bindNav() {
-    document.querySelectorAll('.nav-link').forEach(l => {
-      l.addEventListener('click', () => this.navigate(l.dataset.page));
+  init() {
+    // 缓存所有页面元素
+    ['home','values','code','ai','scene','article','tools','quiz','value-detail','category'].forEach(p => {
+      this.pageEls[p] = document.getElementById('page-' + p);
     });
+    // 缓存导航元素
+    this.navLinks = document.querySelectorAll('.nav-link');
+
+    // 绑定侧边栏点击
+    this.navLinks.forEach(l => {
+      l.onclick = (e) => {
+        e.preventDefault();
+        this.navigate(l.dataset.page);
+      };
+    });
+
+    // 加载首页
+    this.loadHome();
   },
 
   navigate(page) {
     this.currentPage = page;
-    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    // 更新导航高亮
+    this.navLinks.forEach(l => l.classList.remove('active'));
     const nl = document.querySelector(`.nav-link[data-page="${page}"]`);
     if (nl) nl.classList.add('active');
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const el = document.getElementById('page-' + page);
-    if (el) el.classList.add('active');
+    // 切换页面
+    Object.values(this.pageEls).forEach(p => { if(p) { p.classList.remove('active'); p.style.display = 'none'; } });
+    const el = this.pageEls[page];
+    if (el) { el.classList.add('active'); el.style.display = 'block'; }
     window.scrollTo(0, 0);
+    // 加载内容
     switch (page) { case 'home': this.loadHome(); break; case 'values': this.loadValues(); break; case 'code': this.loadCode(); break; case 'tools': this.loadTools(); break; case 'quiz': this.loadQuiz(); break; }
   },
 
@@ -226,4 +243,10 @@ const desktop = {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => { desktop.init(); });
+document.addEventListener('DOMContentLoaded', () => {
+  // 默认显示首页，隐藏其他
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  const homeEl = document.getElementById('page-home');
+  if (homeEl) { homeEl.classList.add('active'); homeEl.style.display = 'block'; }
+  desktop.init();
+});
